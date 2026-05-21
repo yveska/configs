@@ -1,0 +1,62 @@
+@define-color black     rgba(6, 6, 6, 0.7);
+@define-color slate     #7d7d8d;
+@define-color white     #ffffff;
+@define-color border_line    rgba(255, 255, 255, 0.02);
+
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "Bricolage Grotesque", "JetBrainsMono Nerd Font";
+  font-size: 12px; 
+  font-weight: 500;
+}
+
+window#waybar {
+  background-color: @black;
+  border-bottom: 1px solid @border_line;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* --- WORKSPACES --- */
+#workspaces {
+  padding-left: 15px;
+}
+
+#workspaces button {
+  color: rgba(209, 209, 209, 0.55); 
+  padding: 0 12px;
+  transition: all 0.2s ease; 
+}
+
+#workspaces button:hover {
+  color: @slate;
+  background: transparent;
+}
+
+#workspaces button.active {
+  color: @white;
+  border-bottom: 2px solid @slate;
+}
+
+/* --- RIGHT SIDE --- */
+#clock,
+#custom-vpn,
+#pulseaudio,
+#tray {
+  padding: 0 15px;
+  border-left: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+#clock {
+  color: #a8a8b0;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+#custom-vpn.connected {
+  color: @slate;
+}
+
+#pulseaudio {
+  color: #a8a8a8; 
+}

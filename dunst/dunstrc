@@ -1,0 +1,42 @@
+[global]
+
+### Appearance
+corner_radius = 0 
+font = FiraCode Mono Nerd Font 10
+width = 320
+height = 90
+offset = 15x15
+origin = top-right
+
+# Borders and Padding
+frame_width = 1
+frame_color = "#3d424a" 
+separator_color = "#3d424a"
+padding = 12
+horizontal_padding = 15
+text_icon_padding = 15
+
+# Alignment
+text_alignment = left
+vertical_alignment = center
+
+# Transparency and Animation
+transparency = 0
+separator_height = 1
+
+[urgency_low]
+background = "#1a1d21"
+foreground = "#8b919a"
+timeout = 5
+
+[urgency_normal]
+background = "#1f2228"
+foreground = "#f0efeb"
+frame_color = "#515761"
+timeout = 10
+
+[urgency_critical]
+background = "#CDACAC"
+foreground = "#1a1d21"
+frame_color = "#f5a191"
+timeout = 0
