@@ -142,7 +142,7 @@ hl.bind(mod .. " + E", hl.dsp.exec_cmd("dolphin"))
 hl.bind(mod .. " + A", hl.dsp.exec_cmd("vicinae toggle"))
 hl.bind(mod .. " + B", hl.dsp.exec_cmd("zen-browser"))
 hl.bind(mod .. " + O", hl.dsp.exec_cmd("obsidian"))
-hl.bind(mod .. " + P", hl.dsp.exec_cmd("sioyek"))
+hl.bind(mod .. " + P", hl.dsp.exec_cmd("zathura"))
 
 -- Screenshots
 hl.bind(mod .. " + Print", hl.dsp.exec_cmd('grim -g "$(slurp)" - | wl-copy'))
@@ -243,3 +243,8 @@ hl.layer_rule({
 	no_anim = true,
 })
 
+hl.window_rule({
+    name  = "zathura transparency",
+    match = { class = "org.pwmt.zathura" },
+    opacity = 0.8, 
+})

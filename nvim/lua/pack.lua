@@ -1,5 +1,5 @@
 vim.pack.add({
-    "https://github.com/wnkz/monoglow.nvim",
+    "https://github.com/slugbyte/lackluster.nvim",
     "https://github.com/nvim-mini/mini.nvim",
     "https://github.com/rafamadriz/friendly-snippets",
     {

@@ -2,7 +2,7 @@
 
 ### Appearance
 corner_radius = 0 
-font = FiraCode Mono Nerd Font 10
+font = IoskeleyMonoTerm Nerd Font 10
 width = 320
 height = 90
 offset = 15x15
