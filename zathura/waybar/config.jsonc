@@ -7,11 +7,11 @@
   "margin-right": 0,
   "spacing": 0, 
 
-  "modules-left": ["niri/workspaces"],
+  "modules-left": ["hyprland/workspaces"],
   "modules-center": [], 
   "modules-right": ["clock","pulseaudio", "tray"],
 
-  "niri/workspaces": {
+  "hyprland/workspaces": {
     "format": "{icon}",
     "on-click": "activate",
   },

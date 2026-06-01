@@ -1,0 +1,194 @@
+// ---- Output ----
+output "DP-2" {
+    mode "1920x1080@165"
+    scale 1.0
+    position x=1920 y=0
+}
+
+// ---- Input ----
+input {
+    keyboard {
+        xkb {
+            layout "us"
+            options "grp:alt_shift_toggle,ctrl:nocaps"
+        }
+    }
+
+    mouse {
+        accel-profile "flat"
+        accel-speed -0.5
+    }
+
+    focus-follows-mouse max-scroll-amount="0%"
+    warp-mouse-to-focus
+}
+
+// ---- Layout ----
+layout {
+    gaps 5
+
+    focus-ring { off; }
+
+    border {
+        width 1
+        active-color "#05070a"
+        inactive-color "#2a2a2d"
+    }
+
+    shadow { off; }
+
+    default-column-width { proportion 1.0; }
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+}
+
+// Ask clients to omit client-side decorations (title bars)
+prefer-no-csd
+
+// ---- Animations ----
+animations {}
+
+// ---- Screenshots ----
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+// ---- Autostart ----
+spawn-at-startup "systemctl" "--user" "start" "hyprpolkitagent"
+spawn-at-startup "nm-applet"
+spawn-at-startup "vicinae" "server"
+spawn-at-startup "awww-daemon"
+
+// ---- Window Rules ----
+
+// window-rule {
+//     match app-id=r#"^sioyek$"#
+//     opacity 0.90
+// }
+
+// ---- Layer Rules ----
+
+// Vicinae blur
+layer-rule {
+    match namespace="^vicinae$"
+    background-effect {
+        blur true
+    }
+}
+
+// ---- Hotkey Overlay ----
+hotkey-overlay {
+    skip-at-startup
+}
+
+// ---- Keybindings ----
+binds {
+
+    // ---- Apps ----
+    Mod+T { spawn "kitty"; }
+    Mod+E { spawn "nautilus"; }
+    Mod+A { spawn "vicinae" "toggle"; }
+    Mod+B { spawn "zen-browser"; }
+    Mod+O { spawn "obsidian"; }
+    Mod+P { spawn "sioyek"; }
+
+    // ---- Overview ----
+    Mod+Shift+O repeat=false { toggle-overview; }
+
+    // ---- Screenshots ----
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+
+    // ---- Vicinae ----
+    Mod+V { spawn "vicinae" "vicinae://launch/clipboard/history"; }
+    Mod+Space { spawn "vicinae" "vicinae://launch/wm/switch-windows"; }
+    Mod+Shift+W { spawn-sh "awww img -t fade --transition-duration 1 $(find ~/Pictures/Wallpapers/ -type f | vicinae dmenu -p 'Pick a wallpaper...')"; }
+
+    // ---- Tmux workspace ----
+    // Mod+W { spawn-sh "niri msg action focus-workspace 1 && target=$(tmux list-sessions -F '#S' | vicinae dmenu -p 'tmux session:') && [ -n \"$target\" ] && tmux switch-client -t \"$target\""; }
+
+    // ---- Waybar toggle ----
+    Alt+W { spawn-sh "pkill waybar || waybar"; }
+
+    // ---- Window actions ----
+    Mod+Q repeat=false { close-window; }
+    Mod+F { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+Shift+Space { toggle-window-floating; }
+    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+    // ---- Column management ----
+    Mod+R { switch-preset-column-width; }
+    Mod+Shift+R { switch-preset-column-width-back; }
+    Mod+C { center-column; }
+    Mod+Ctrl+F { expand-column-to-available-width; }
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+    Mod+Ctrl+Shift+R { switch-preset-window-height; }
+    Mod+Ctrl+R { reset-window-height; }
+
+    // ---- Workspace switching ----
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+0 { focus-workspace 10; }
+    Mod+Tab { focus-workspace-previous; }
+
+    // ---- Move window to workspace ----
+    Mod+Shift+1 { move-window-to-workspace 1; }
+    Mod+Shift+2 { move-window-to-workspace 2; }
+    Mod+Shift+3 { move-window-to-workspace 3; }
+    Mod+Shift+4 { move-window-to-workspace 4; }
+    Mod+Shift+5 { move-window-to-workspace 5; }
+    Mod+Shift+6 { move-window-to-workspace 6; }
+    Mod+Shift+7 { move-window-to-workspace 7; }
+    Mod+Shift+8 { move-window-to-workspace 8; }
+    Mod+Shift+9 { move-window-to-workspace 9; }
+    Mod+Shift+0 { move-window-to-workspace 10; }
+
+    // ---- Vim window navigation ----
+    Mod+H { focus-column-left; }
+    Mod+J { focus-window-down; }
+    Mod+K { focus-window-up; }
+    Mod+L { focus-column-right; }
+    Mod+Home { focus-column-first; }
+    Mod+End { focus-column-last; }
+
+    // ---- Vim window movement (swap) ----
+    Mod+Shift+H { consume-or-expel-window-left; }
+    Mod+Shift+L { consume-or-expel-window-right; }
+    Mod+Ctrl+H  { move-column-left; }
+    Mod+Ctrl+J  { move-window-down; }
+    Mod+Ctrl+K  { move-window-up; }
+    Mod+Ctrl+L  { move-column-right; }
+
+    // ---- Workspace scrolling ----
+    Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+
+    // ---- Media keys ----
+    XF86AudioRaiseVolume allow-when-locked=true repeat=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"; }
+    XF86AudioLowerVolume allow-when-locked=true repeat=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"; }
+    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+    XF86AudioPlay        allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioPause       allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
+    XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
+
+    // ---- System ----
+    Mod+Shift+E { quit; }
+    Mod+Shift+P { power-off-monitors; }
+    Mod+Shift+Slash { show-hotkey-overlay; }
+}

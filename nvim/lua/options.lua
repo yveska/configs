@@ -44,7 +44,7 @@ vim.opt.fillchars = {
 	vertright = "┣",
 	verthoriz = "╋",
 } -- hide "~" on empty lines
-vim.opt.laststatus = 3 -- Pins the statusline to the bottom of the screen
+vim.opt.laststatus = 1 -- Pins the statusline to the bottom of the screen
 
 vim.opt.backup = false -- do not create a backup file
 vim.opt.writebackup = false -- do not write to a backup file
